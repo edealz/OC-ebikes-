@@ -1,303 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="OC eBikes - Premier dealer for Sur-Ron, Stark Varg, Talaria, and high-performance electric dirt bikes.">
-    <title>OC eBikes | Electric Dirt Bike Dealer</title>
-
-    <!-- This is the Embedded CSS -->
-    <style>
-        :root {
-            --primary-navy: #00264d;
-            --accent-red: #d32f2f;
-            --accent-blue: #007bff;
-            --light-gray: #f4f4f4;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #fff; color: #333; line-height: 1.6; }
-
-        /* Top Bar */
-        .top-bar { background-color: var(--accent-red); color: white; text-align: center; padding: 10px; font-weight: bold; }
-
-        /* Navbar */
-        .navbar { display: flex; justify-content: space-between; align-items: center; background-color: #fff; padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
-        .text-logo { font-size: 2rem; font-weight: 900; color: var(--primary-navy); text-decoration: none; }
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent-blue); }
-
-        /* Hero */
-        .hero { height: 60vh; background-color: var(--primary-navy); display: flex; justify-content: center; align-items: center; text-align: center; color: white; }
-        .hero-content h1 { font-size: 3rem; margin-bottom: 20px; }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
-        .btn { padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; transition: background 0.3s; display: inline-block; }
-        .btn-primary { background-color: var(--accent-red); color: white; }
-        .btn-primary:hover { background-color: #b71c1c; }
-
-        /* Why Us */
-        .why-us { padding: 50px 5%; background-color: var(--light-gray); }
-        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .why-item { text-align: center; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .why-item .icon { font-size: 2rem; margin-bottom: 10px; }
-        .why-item h3 { color: var(--primary-navy); margin-bottom: 10px; }
-
-        /* Inventory */
-        .inventory-section { padding: 50px 5%; }
-        .section-title { text-align: center; font-size: 2.2rem; color: var(--primary-navy); margin-bottom: 10px; }
-        .section-subtitle { text-align: center; color: #666; margin-bottom: 40px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .product-card { background: #fff; border: 1px solid #eee; border-radius: 8px; overflow: hidden; transition: transform 0.3s; }
-        .product-card:hover { transform: translateY(-5px); }
-        .product-img { height: 200px; background-size: cover; background-position: center; }
-        .product-info { padding: 15px; }
-        .tag { display: inline-block; background-color: var(--accent-blue); color: white; padding: 5px 10px; font-size: 0.8rem; border-radius: 3px; margin-bottom: 10px; }
-        .product-info h3 { font-size: 1.2rem; margin-bottom: 5px; }
-        .price-box { margin-bottom: 15px; }
-        .price { font-size: 0.9rem; color: #999; text-decoration: line-through; }
-        .deal-price { font-size: 1.4rem; font-weight: 900; color: var(--accent-red); }
-        .add-to-cart { display: block; width: 100%; background-color: var(--primary-navy); color: white; text-decoration: none; text-align: center; padding: 10px; border-radius: 5px; font-weight: bold; }
-        .add-to-cart:hover { background-color: var(--accent-blue); }
-
-        /* Contact */
-        .contact-section { background-color: var(--light-gray); padding: 50px 5%; text-align: center; }
-        .contact-container { max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 8px; }
-        .email-link { color: var(--accent-blue); font-weight: bold; }
-        .quote-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-        .quote-form input, .quote-form select, .quote-form textarea { padding: 10px; border: 1px solid #ccc; border-radius: 5px; width: 100%; }
-        .quote-form button { margin-top: 10px; border: none; cursor: pointer; }
-
-        /* Footer */
-        footer { background-color: #111; color: white; padding: 40px 5%; }
-        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
-        .footer-col h3 { margin-bottom: 10px; color: var(--accent-blue); }
-        .footer-col a { color: #ccc; text-decoration: none; display: block; margin-bottom: 5px; }
-        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid #333; }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-content h1 { font-size: 2rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="top-bar"><p>⚡ Limited Time Offer: 5% OFF MSRP on all in-stock bikes! ⚡</p></div>
-
-    <nav class="navbar">
-        <a href="#home" class="text-logo">OC eBikes</a>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#inventory">Shop Inventory</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <h1>PURE ELECTRIC OFF-ROAD POWER</h1>
-            <p>Sur-Ron • Talaria • Stark Varg • E-Ride</p>
-            <a href="#inventory" class="btn btn-primary">Shop The Deals</a>
+<div class="product-grid">
+    
+    <!-- Bike 1 -->
+    <div class="product-card">
+        <div class="product-img" style="background-image: url('deepseek_20260909_921c8a.png');"></div> 
+        <div class="product-info">
+            <span class="tag">Pro Spec</span>
+            <h3>Dirt Rocket Pro Spec</h3>
+            <div class="price-box">
+                <p class="price"><s>$2,999 MSRP</s></p>
+                <p class="deal-price">$2,849.05</p>
+            </div>
+            <a href="mailto:ocebikes4@gmail.com?subject=Order%20Dirt%20Rocket%20Pro%20Spec" class="add-to-cart">Reserve via Email</a>
         </div>
-    </header>
+    </div>
 
-    <section class="why-us">
-        <div class="container">
-            <div class="why-item">
-                <div class="icon">⚡</div>
-                <h3>100% Electric</h3>
-                <p>No gas, no oil, just instant torque.</p>
+    <!-- Bike 2 -->
+    <div class="product-card">
+        <div class="product-img" style="background-image: url('deepseek_20260909_d6a330.png');"></div> 
+        <div class="product-info">
+            <span class="tag">Pro Spec</span>
+            <h3>Dirt Rocket Pro Spec (Full)</h3>
+            <div class="price-box">
+                <p class="price"><s>$2,999 MSRP</s></p>
+                <p class="deal-price">$2,849.05</p>
             </div>
-            <div class="why-item">
-                <div class="icon">🔧</div>
-                <h3>Expert E-Moto Techs</h3>
-                <p>Factory-trained mechanics.</p>
-            </div>
-            <div class="why-item">
-                <div class="icon">💳</div>
-                <h3>5% OFF MSRP</h3>
-                <p>Unbeatable dealer pricing.</p>
-            </div>
+            <a href="mailto:ocebikes4@gmail.com?subject=Order%20Dirt%20Rocket%20Pro%20Spec" class="add-to-cart">Reserve via Email</a>
         </div>
-    </section>
+    </div>
 
-    <section id="inventory" class="inventory-section">
-        <h2 class="section-title">FEATURED INVENTORY</h2>
-        <p class="section-subtitle">All prices reflect a 5% dealer discount off MSRP.</p>
-        
-        <div class="product-grid">
-            
-            <!-- Bike 1: Sur-Ron -->
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('surron.jpg');"></div> 
-                <div class="product-info">
-                    <span class="tag">Light Bee X</span>
-                    <h3>Sur-Ron Light Bee X</h3>
-                    <div class="price-box">
-                        <p class="price"><s>$4,799 MSRP</s></p>
-                        <p class="deal-price">$4,559.05</p>
-                    </div>
-                    <a href="mailto:ocebikes4@gmail.com?subject=Order%20Sur-Ron%20Light%20Bee%20X" class="add-to-cart">Reserve via Email</a>
-                </div>
+    <!-- Bike 3 -->
+    <div class="product-card">
+        <div class="product-img" style="background-image: url('deepseek_20260909_3969f2.png');"></div> 
+        <div class="product-info">
+            <span class="tag">X260</span>
+            <h3>Segway Dirt eBike X260</h3>
+            <div class="price-box">
+                <p class="price"><s>$4,999 MSRP</s></p>
+                <p class="deal-price">$4,749.05</p>
             </div>
-
-            <!-- Bike 2: Talaria -->
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('talaria.jpg');"></div> 
-                <div class="product-info">
-                    <span class="tag">Sting MX</span>
-                    <h3>Talaria Sting MX</h3>
-                    <div class="price-box">
-                        <p class="price"><s>$4,499 MSRP</s></p>
-                        <p class="deal-price">$4,274.05</p>
-                    </div>
-                    <a href="mailto:ocebikes4@gmail.com?subject=Order%20Talaria%20Sting%20MX" class="add-to-cart">Reserve via Email</a>
-                </div>
-            </div>
-
-            <!-- Bike 3: Stark Varg -->
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('stark.jpg');"></div> 
-                <div class="product-info">
-                    <span class="tag">MX Race</span>
-                    <h3>Stark Varg</h3>
-                    <div class="price-box">
-                        <p class="price"><s>$12,900 MSRP</s></p>
-                        <p class="deal-price">$12,255.00</p>
-                    </div>
-                    <a href="mailto:ocebikes4@gmail.com?subject=Order%20Stark%20Varg" class="add-to-cart">Reserve via Email</a>
-                </div>
-            </div>
-
-            <!-- Bike 4: E-Ride -->
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('eride.jpg');"></div> 
-                <div class="product-info">
-                    <span class="tag">Pro SS</span>
-                    <h3>E-Ride Pro SS</h3>
-                    <div class="price-box">
-                        <p class="price"><s>$4,299 MSRP</s></p>
-                        <p class="deal-price">$4,084.05</p>
-                    </div>
-                    <a href="mailto:ocebikes4@gmail.com?subject=Order%20E-Ride%20Pro%20SS" class="add-to-cart">Reserve via Email</a>
-                </div>
-            </div>
-
-            <!-- Bike 5: Rawrr -->
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('rawrr.jpg');"></div> 
-                <div class="product-info">
-                    <span class="tag">Mantis</span>
-                    <h3>Rawrr Mantis</h3>
-                    <div class="price-box">
-                        <p class="price"><s>$3,999 MSRP</s></p>
-                        <p class="deal-price">$3,799.05</p>
-                    </div>
-                    <a href="mailto:ocebikes4@gmail.com?subject=Order%20Rawrr%20Mantis" class="add-to-cart">Reserve via Email</a>
-                </div>
-            </div>
-
-            <!-- Bike 6: Segway -->
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('segway.jpg');"></div> 
-                <div class="product-info">
-                    <span class="tag">X260</span>
-                    <h3>Segway Dirt eBike X260</h3>
-                    <div class="price-box">
-                        <p class="price"><s>$4,999 MSRP</s></p>
-                        <p class="deal-price">$4,749.05</p>
-                    </div>
-                    <a href="mailto:ocebikes4@gmail.com?subject=Order%20Segway%20X260" class="add-to-cart">Reserve via Email</a>
-                </div>
-            </div>
-
-            <!-- Bike 7: Sur-Ron Ultra Bee -->
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('ultrabee.jpg');"></div> 
-                <div class="product-info">
-                    <span class="tag">Ultra Bee</span>
-                    <h3>Sur-Ron Ultra Bee</h3>
-                    <div class="price-box">
-                        <p class="price"><s>$6,499 MSRP</s></p>
-                        <p class="deal-price">$6,174.05</p>
-                    </div>
-                    <a href="mailto:ocebikes4@gmail.com?subject=Order%20Sur-Ron%20Ultra%20Bee" class="add-to-cart">Reserve via Email</a>
-                </div>
-            </div>
-
-            <!-- Bike 8: Dirt Rocket -->
-            <div class="product-card">
-                <div class="product-img" style="background-image: url('prospec.jpg');"></div> 
-                <div class="product-info">
-                    <span class="tag">Pro Spec</span>
-                    <h3>Dirt Rocket Pro Spec</h3>
-                    <div class="price-box">
-                        <p class="price"><s>$2,999 MSRP</s></p>
-                        <p class="deal-price">$2,849.05</p>
-                    </div>
-                    <a href="mailto:ocebikes4@gmail.com?subject=Order%20Dirt%20Rocket%20Pro%20Spec" class="add-to-cart">Reserve via Email</a>
-                </div>
-            </div>
-
+            <a href="mailto:ocebikes4@gmail.com?subject=Order%20Segway%20X260" class="add-to-cart">Reserve via Email</a>
         </div>
-    </section>
+    </div>
 
-    <section id="contact" class="contact-section">
-        <div class="contact-container">
-            <h2>BOOK A TEST RIDE</h2>
-            <p>Email us at <a href="mailto:ocebikes4@gmail.com" class="email-link">ocebikes4@gmail.com</a> or fill out the form below.</p>
-            
-            <form class="quote-form" action="mailto:ocebikes4@gmail.com" method="post" enctype="text/plain">
-                <input type="text" name="Name" placeholder="Full Name" required>
-                <input type="tel" name="Phone" placeholder="Phone Number" required>
-                <input type="email" name="Email" placeholder="Your Email" required>
-                <select name="Bike Interest" required>
-                    <option value="" disabled selected>Select a Bike</option>
-                    <option value="Sur-Ron">Sur-Ron</option>
-                    <option value="Talaria">Talaria</option>
-                    <option value="Stark Varg">Stark Varg</option>
-                    <option value="E-Ride">E-Ride</option>
-                </select>
-                <textarea name="Message" placeholder="Tell us about your riding style"></textarea>
-                <button type="submit" class="btn btn-primary">Send via Email</button>
-            </form>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h3>OC eBikes</h3>
-                <p>Your local hub for pure electric off-road power.</p>
+    <!-- Bike 4 -->
+    <div class="product-card">
+        <div class="product-img" style="background-image: url('deepseek_20260909_361866.png');"></div> 
+        <div class="product-info">
+            <span class="tag">Pro SS</span>
+            <h3>E-Ride Pro SS</h3>
+            <div class="price-box">
+                <p class="price"><s>$4,299 MSRP</s></p>
+                <p class="deal-price">$4,084.05</p>
             </div>
-            <div class="footer-col">
-                <h3>Quick Links</h3>
-                <a href="#home">Home</a>
-                <a href="#inventory">Shop</a>
-            </div>
-            <div class="footer-col">
-                <h3>Contact</h3>
-                <a href="mailto:ocebikes4@gmail.com">ocebikes4@gmail.com</a>
-                <p>Mon-Sat: 9AM - 7PM</p>
-            </div>
+            <a href="mailto:ocebikes4@gmail.com?subject=Order%20E-Ride%20Pro%20SS" class="add-to-cart">Reserve via Email</a>
         </div>
-        <div class="copyright">
-            <p>&copy; 2023 OC eBikes. All rights reserved.</p>
+    </div>
+
+    <!-- Bike 5 -->
+    <div class="product-card">
+        <div class="product-img" style="background-image: url('deepseek_20260909_8282d1.png');"></div> 
+        <div class="product-info">
+            <span class="tag">Light Bee X</span>
+            <h3>Sur-Ron Light Bee X</h3>
+            <div class="price-box">
+                <p class="price"><s>$4,799 MSRP</s></p>
+                <p class="deal-price">$4,559.05</p>
+            </div>
+            <a href="mailto:ocebikes4@gmail.com?subject=Order%20Sur-Ron%20Light%20Bee%20X" class="add-to-cart">Reserve via Email</a>
         </div>
-    </footer>
+    </div>
 
-    <!-- Embedded JavaScript -->
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
+    <!-- Bike 6 -->
+    <div class="product-card">
+        <div class="product-img" style="background-image: url('deepseek_20260909_368c54.png');"></div> 
+        <div class="product-info">
+            <span class="tag">MX Race</span>
+            <h3>Stark Varg</h3>
+            <div class="price-box">
+                <p class="price"><s>$12,900 MSRP</s></p>
+                <p class="deal-price">$12,255.00</p>
+            </div>
+            <a href="mailto:ocebikes4@gmail.com?subject=Order%20Stark%20Varg" class="add-to-cart">Reserve via Email</a>
+        </div>
+    </div>
 
-</body>
-</html>
+    <!-- Bike 7 -->
+    <div class="product-card">
+        <div class="product-img" style="background-image: url('deepseek_20260909_f648c6.png');"></div> 
+        <div class="product-info">
+            <span class="tag">Sting MX</span>
+            <h3>Talaria Sting MX</h3>
+            <div class="price-box">
+                <p class="price"><s>$4,499 MSRP</s></p>
+                <p class="deal-price">$4,274.05</p>
+            </div>
+            <a href="mailto:ocebikes4@gmail.com?subject=Order%20Talaria%20Sting%20MX" class="add-to-cart">Reserve via Email</a>
+        </div>
+    </div>
+
+    <!-- Bike 8 -->
+    <div class="product-card">
+        <div class="product-img" style="background-image: url('deepseek_20260909_4638e2.png');"></div> 
+        <div class="product-info">
+            <span class="tag">Mantis</span>
+            <h3>Rawrr Mantis</h3>
+            <div class="price-box">
+                <p class="price"><s>$3,999 MSRP</s></p>
+                <p class="deal-price">$3,799.05</p>
+            </div>
+            <a href="mailto:ocebikes4@gmail.com?subject=Order%20Rawrr%20Mantis" class="add-to-cart">Reserve via Email</a>
+        </div>
+    </div>
+
+</div>
